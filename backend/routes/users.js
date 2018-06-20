@@ -5,28 +5,32 @@ var fs = require('fs');
 
 var sqlite3 = require('sqlite3').verbose();
 
-function getName(callback){
+function getEventData(callback, id){
   var db = new sqlite3.Database('data/users.db');
-  var query = "SELECT * FROM events";
+  var query = "SELECT * FROM events where id = " + id;
+  var ret_val = "";
   db.all(query, function (err, rows) {
     if(err){
         console.log(err);
     }else{
+        //console.log();
         callback(rows[0]);
     }
   });
 }
 
 
-function print_data(data){
-  console.log(data);
+function sendLocations(data){
+  var ret_val = data.locations.substring(1,rows[0].locations.length-1).split(',');
+  return ret_val;
 }
 
-getName(print_data)
+
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-
-  res.json(data);
+  console.log(getEventData(sendLocations, 0));
+  //res.json(getName(print_data));
 });
 
 module.exports = router;
