@@ -29,7 +29,20 @@ function sendLocations(data){
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log(getEventData(sendLocations, 0));
+  var db = new sqlite3.Database('data/users.db');
+  var query = "SELECT * FROM events where id = 0";
+  var ret_val = "";
+  db.all(query, function (err, rows) {
+    if(err){
+        console.log(err);
+    }else{
+        //console.log();
+        console.log(rows);
+        data = {"data": rows};
+        res.send((data));
+    }
+  });
+  //console.log(getEventData(sendLocations, 0));
   //res.json(getName(print_data));
 });
 
