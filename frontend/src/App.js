@@ -96,11 +96,11 @@ class App extends Component {
 
 
   render() {
-    if (this.state.users.length > 0) {
-      const myEvents = this.state.users;
-      console.log(myEvents[0].name);
+    const myEvents = this.state.users;
+    if (myEvents.length > 0 && typeof(myEvents[0].locations) != "string") {
+      console.log(myEvents[0]);
     }
-    
+
     const createdEvents = this.state.list_of_events.map((createdEvent, i) => {
       console.log(createdEvent);
       createdEvent.createdEventId = i;
