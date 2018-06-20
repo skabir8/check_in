@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
 import './App.css';
+import CreateEvents from "./CreateEvent.js";
+import Event from "./Event.js";
 
 class App extends Component {
 
@@ -8,8 +11,19 @@ class App extends Component {
     this.state = {
       name: "",
       listOfNames: [],
-      users: []
+      users: [],
+      list_of_events: []
     }
+  }
+
+
+  getAddedEvent = (addedEvent) => {
+    let updated_list_of_events = this.state.list_of_events;
+    updated_list_of_events.push(addedEvent);
+
+    this.setState({
+      list_of_events: updated_list_of_events
+    });
   }
 
   componentDidMount() {
@@ -41,14 +55,14 @@ class App extends Component {
           checkedin: new_checkedin,
           map_locations: new_map_locations};
 
-      //console.log(new_dict);
-      newUserList[i] = new_dict;
+          //console.log(new_dict);
+          newUserList[i] = new_dict;
 
+        }
+        this.setState({users: newUserList});
+
+        //console.log(this.state.users);
       }
-      this.setState({users: newUserList});
-
-    //console.log(this.state.users);
-    }
     });
   }
 
@@ -80,36 +94,33 @@ class App extends Component {
   }
 
 
+
   render() {
     if (this.state.users.length > 0) {
       const myEvents = this.state.users;
       console.log(myEvents[0].name);
     }
+    
+    const createdEvents = this.state.list_of_events.map((createdEvent, i) => {
+      console.log(createdEvent);
+      createdEvent.createdEventId = i;
+      if(createdEvent !== undefined)
+      return <Event key={i} eventInfoFromApp={createdEvent} />
+    });
 
-
-
-    //console.log(Object.getOwnPropertyNames(listOfUsers));
-    //console.log((listOfUsers.keys))
-    //const hey = current_event.id;
-    //console.log(this.state.users);
-    //console.log(Object.prototype.toString.call(hey));
-    //console.log(hey);
-    //console.log(Object.prototype.toString.call(this.state.users));
-    //const name = listOfUsers.map((name, index) => (<li key={index} onClick={this.handleDelete.bind(this,index)}>{name}</li>));
     return (
       <div className="App">
-      <h1>To-Do List</h1>
+      <header className="App-header">
+      <img src="Check_icon.png" id="check-logo" alt="logo" />
+      </header>
 
+      <div id="create-events">
+      <CreateEvents appCallback={this.getAddedEvent}/>
+      </div>
 
-      <form onSubmit={this.handleSubmit.bind(this)}>
-      <label>
-      Name: <br />
-      <input onChange={this.handleChange.bind(this)} type="text" name="name" />
-      </label>
-      <input type="submit" value="Submit" />
-      </form>
-
-
+      <div id="current-events">
+      {createdEvents}
+      </div>
 
       </div>
     );
