@@ -1,0 +1,56 @@
+#Event {
+	width: 250px;
+	height: 400px;
+	background-color: white;
+	text-align: center;
+	border-radius: 10px;
+	border: 2px solid #5b5b5b;
+	margin: 15px;
+	white-space: nowrap;
+	float: left;
+	justify-content: center;
+}
+
+#Event-Header {
+	display: flex;
+	width: 100%;
+	height: 50px;
+	background: #e2edff;
+	justify-content: center;
+	align-self: center;
+	align-content: center;
+	border-bottom: 1px solid #5b5b5b;
+	border-radius: 5px;
+}
+
+#Event-Name {
+	margin-top: 15px;
+	align-self: center;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#Event-Body {
+	display: flex;
+}
+
+ul {
+	list-style: none;
+	align-self: center;
+	margin: auto;
+	padding: 0;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+li {
+	margin-top: 5px;
+}
+
+#invited {
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 20px;
+}

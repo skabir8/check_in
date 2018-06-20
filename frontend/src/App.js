@@ -1,73 +1,49 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
 import './App.css';
+import CreateEvents from "./CreateEvent.js";
+import Event from "./Event.js";
 
 class App extends Component {
-
   constructor(){
     super();
     this.state = {
-      name: "",
-      listOfNames: [],
-      users: []
+      list_of_events:[]
     }
   }
 
-  componentDidMount() {
-    var new_list = []
-    fetch('/users')
-    .then(res => res.json())
-    .then(new_users => this.setState({ users: new_users["lists"]}))
-    .then(this.setState({ users: new_list }));
-  }
+  getAddedEvent = (addedEvent) => {
+    let updated_list_of_events = this.state.list_of_events;
+    updated_list_of_events.push(addedEvent);
 
-  handleChange(event){
-    const name = event.target.value;
     this.setState({
-      name
-    })
-  }
-
-  handleSubmit(event){
-    const name = this.state.name;
-    var new_list = []
-    var post_req = "/add?todo=" + name;
-    fetch(post_req)
-    .then(res => res.json())
-    .then(new_users => this.setState({ users: new_users["lists"]}))
-    .then(this.setState({ users: new_list }));
-  }
-  handleDelete(index) {
-    var new_list = [];
-    var post_req = "/delete?index=" + index;
-    fetch(post_req)
-    .then(res => res.json())
-    .then(new_users => this.setState({ users: new_users["lists"]}))
-    .then(this.setState({ users: new_list }));
-
+      list_of_events: updated_list_of_events
+    });
   }
 
 
   render() {
-    const listOfUsers = this.state.users;
-    console.log(this.state.users);
-    const name = listOfUsers.map((name, index) => (<li key={index} onClick={this.handleDelete.bind(this,index)}>{name}</li>));
+    const createdEvents = this.state.list_of_events.map((createdEvent, i) => {
+      console.log(createdEvent);
+      createdEvent.createdEventId = i;
+      if(createdEvent !== undefined)
+        return <Event key={i} eventInfoFromApp={createdEvent} />
+    });
+
     return (
       <div className="App">
-      <h1>To-Do List</h1>
+        <header className="App-header">
+          <img src="Check_icon.png" id="check-logo" alt="logo" />
+        </header>
 
+        <div id="create-events">
+          <CreateEvents appCallback={this.getAddedEvent}/>
+        </div>
 
-      <form onSubmit={this.handleSubmit.bind(this)}>
-      <label>
-      Name: <br />
-      <input onChange={this.handleChange.bind(this)} type="text" name="name" />
-      </label>
-      <input type="submit" value="Submit" />
-      </form>
+        <div id="current-events">
+          {createdEvents}
+        </div>
 
-
-      <ul>
-      { (name) ? name : null }
-      </ul>
       </div>
     );
   }
