@@ -26,6 +26,8 @@ class Event extends Component {
 					<ul>
 						{this.state.invites.map((invite) => <li>{invite}</li>)}
 					</ul>
+					<br />
+					<a href=""><button class="btn btn-outline-primary" id="details">See Details</button></a>
 				</div>
 			</div>
 		);

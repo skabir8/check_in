@@ -30,8 +30,8 @@
 	font-weight: bold;
 }
 
-#Event-Body {
-	display: flex;
+#details {
+	align-self: flex-end;
 }
 
 ul {
