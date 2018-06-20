@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Event.css';
+import Details from './details.js';
 
 class Event extends Component {
 	constructor(props){
@@ -27,7 +28,7 @@ class Event extends Component {
 						{this.state.invites.map((invite) => <li>{invite}</li>)}
 					</ul>
 					<br />
-					<a href=""><button class="btn btn-outline-primary" id="details">See Details</button></a>
+					<Details />
 				</div>
 			</div>
 		);
