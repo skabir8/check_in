@@ -4,7 +4,6 @@ var fs = require('fs');
 
 var sqlite3 = require('sqlite3').verbose();
 
-
 router.get('/', function(req, res, next) {
   var id = parseInt(req.query['id']);
   console.log(id);
@@ -19,6 +18,7 @@ router.get('/', function(req, res, next) {
     }
   });
   db.close();
+
 
 });
 

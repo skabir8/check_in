@@ -6,7 +6,7 @@ class Details extends Component {
 		super(props);
 		const myProps = this.props.eventInfoFromApp;
 		this.state = {
-			id: this.props.detailsInfoFromEvent,
+			id: myProps.id,
 			name: myProps.name,
 			invites: myProps.members,
 			date: myProps.date[0],
@@ -78,6 +78,25 @@ class Details extends Component {
 		})
 
 		console.log(this.state.checkedIn);
+
+		var obj = {
+			id: this.state.id,
+			name: this.state.name,
+			invites: this.state.invites,
+			date: this.state.temporaryDate.replace(/\s/g, '').split(','),
+			time: this.state.temporaryTime.replace(/\s/g, '').split(','),
+			todo: this.state.temporaryTodo.replace(/\s/g, '').split(','),
+			checkedIn: this.state.temporaryCheckedIn.replace(/\s/g, '').split(','),
+			query: ""
+		}
+		// var new_id = Math.round(Math.random()*100000);
+		// obj.createdEventId = new_id;
+		var post_req_detail = "addDetails?id=" + obj.id + "&date=" + obj.date + "&time=" + obj.time + "&todo=" + obj.todo +"&checkedIn=" + obj.checkedIn;
+		obj.query = post_req_detail;
+		console.log(post_req_detail);
+		fetch(post_req_detail);
+		//this.setState({name: "ddddddd"});
+		//console.log(this.state.name);
 	}
 
 	render() {
