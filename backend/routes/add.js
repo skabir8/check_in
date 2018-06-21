@@ -2,26 +2,26 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
-var users;
-var exists = fs.existsSync('data.json');
-if (exists) {
-  var txt = fs.readFileSync('data.json', 'utf8');
-  data = JSON.parse(txt);
-} else {
-  data = {};
-}
+var sqlite3 = require('sqlite3').verbose();
+
 
 
 router.get('/', function(req, res, next) {
-  var new_todo = req.query['todo'];
-  console.log(new_todo);
-  data["lists"].push(new_todo);
-  fs.writeFile ("data.json", JSON.stringify(data), function(err) {
-    if (err) throw err;
-    console.log('complete');
-  }
-);
-res.json(data);
+  var id = parseInt(req.query['id']);
+  var name = "'" + req.query['name'] + "'";
+  var invites = "'" + JSON.stringify(req.query['invites'].split(',')).toString() + "'";
+  //var invites = "['Yo','Chill','Nah']";
+  var db = new sqlite3.Database('data/users.db');
+  var query = "INSERT INTO events (id, name, members, locations, date, time, todo, checkedin, map_locations) VALUES (" + id + "," + name + "," + invites+ ", '[]','[]','[]','[]','[]','[]')";
+
+  db.all(query, function (err, rows) {
+    if(err){
+        console.log(err);
+    }
+  });
+  db.close();
+
+  //res.json(data);
 
 
 });

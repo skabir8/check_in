@@ -12,7 +12,8 @@ class App extends Component {
       name: "",
       listOfNames: [],
       users: [],
-      list_of_events: []
+      list_of_events: [],
+      update:""
     }
   }
 
@@ -92,6 +93,10 @@ class App extends Component {
     .then(this.setState({ users: new_list }));
 
   }
+  handleNewUpdate(){
+    this.setState({update:"1"});
+    this.forceUpdate();
+  }
 
 
 
@@ -120,7 +125,7 @@ class App extends Component {
         </header>
 
         <div id="create-events">
-          <CreateEvents appCallback={this.getAddedEvent}/>
+          <CreateEvents appCallback={this.getAddedEvent} onClick={this.handleNewUpdate.bind(this)}/>
         </div>
 
         <div id="current-events">
