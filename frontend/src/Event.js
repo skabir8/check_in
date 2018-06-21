@@ -14,14 +14,20 @@ class Event extends Component {
 		}
 	}
 
+	handleRemove(event){
+			console.log("muah")
+		}
+
+
 
 	render(){
 		//console.log(this.state.fullDetails);
 		return (
 			<div id="Event">
-				<div id="Event-Header">
-					<p id="Event-Name">{this.state.name}</p>
-				</div>
+			<div id="Event-Header">
+							<p id="Event-Name">{this.state.name} </p>
+							<i id="delete" class="fas fa-minus-circle" onClick={this.handleRemove}></i>
+			</div>
 
 				<div>
 					<p id="invited">Invited</p>

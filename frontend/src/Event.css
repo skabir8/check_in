@@ -1,3 +1,4 @@
+
 #Event {
 	width: 250px;
 	height: 700px;
@@ -30,6 +31,11 @@
 
 #details {
 	align-self: flex-end;
+}
+
+#delete {
+	align-self: center;
+	padding-left: 30px;
 }
 
 ul {
