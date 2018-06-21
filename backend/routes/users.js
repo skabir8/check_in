@@ -42,6 +42,7 @@ router.get('/', function(req, res, next) {
         res.send((data));
     }
   });
+  db.close();
   //console.log(getEventData(sendLocations, 0));
   //res.json(getName(print_data));
 });
