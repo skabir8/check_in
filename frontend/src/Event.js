@@ -15,34 +15,37 @@ class Event extends Component {
 	}
 
 	handleRemove(event){
-			console.log("muah")
-		}
-
-
-
-	render(){
-		//console.log(this.state.fullDetails);
-		return (
-			<div id="Event">
-			<div id="Event-Header">
-							<p id="Event-Name">{this.state.name} </p>
-							<i id="delete" class="fas fa-minus-circle" onClick={this.handleRemove}></i>
-			</div>
-
-				<div>
-					<p id="invited">Invited</p>
-				</div>
-
-				<div id="Event-Body">
-					<ul>
-						{this.state.invites.map((invite) => <li>{invite}</li>)}
-					</ul>
-					<br />
-					<Details eventInfoFromApp={this.state.fullDetails} detailsInfoFromEvent={this.state.createdEventId}/>
-				</div>
-			</div>
-		);
+			var deleteId = this.props.eventInfoFromApp.id;
+			var post_req = "/delete?id=" + deleteId;
+			fetch(post_req);
 	}
-}
 
-export default Event;
+
+
+		render(){
+			//console.log(this.state.fullDetails);
+			console.log(this.state);
+			return (
+				<div id="Event">
+				<div id="Event-Header">
+								<p id="Event-Name">{this.state.name} </p>
+								<i id="delete" class="fas fa-minus-circle" onClick={this.handleRemove.bind(this)} my_id = {this.state.createdEventId}></i>
+				</div>
+
+					<div>
+						<p id="invited">Invited</p>
+					</div>
+
+					<div id="Event-Body">
+						<ul>
+							{this.state.invites.map((invite) => <li>{invite}</li>)}
+						</ul>
+						<br />
+						<Details eventInfoFromApp={this.state.fullDetails} detailsInfoFromEvent={this.state.createdEventId}/>
+					</div>
+				</div>
+			);
+		}
+	}
+
+	export default Event;

@@ -36,6 +36,7 @@ class CreateEvent extends Component {
 			createdEventId: -1
 		}
 		var new_id = Math.round(Math.random()*100000);
+		obj.createdEventId = new_id;
 		var post_req = "/add?id=" + new_id + "&name=" + obj.name + "&invites=" + obj.invites;
 		fetch(post_req);
 		this.setState({name: "ddddddd"});

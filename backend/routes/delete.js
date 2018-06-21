@@ -2,29 +2,23 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
-var users;
-var exists = fs.existsSync('data.json');
-if (exists) {
-  var txt = fs.readFileSync('data.json', 'utf8');
-  data = JSON.parse(txt);
-} else {
-  data = {};
-}
+var sqlite3 = require('sqlite3').verbose();
 
 
 router.get('/', function(req, res, next) {
-  var index = parseInt(req.query['index']);
-  console.log(index);
-
-  data["lists"].splice(index, 1);
-  fs.writeFile ("data.json", JSON.stringify(data), function(err) {
-    if (err) throw err;
-    console.log('complete');
-  }
-);
-res.json(data);
-
-
+  var id = parseInt(req.query['id']);
+  console.log(id);
+  var db = new sqlite3.Database('data/users.db');
+  var query = "DELETE FROM events WHERE id =" + id;
+  db.all(query, function (err, rows) {
+    if(err){
+        console.log(err);
+    }
+    else{
+      console.log("Deleted " + id);
+    }
+  });
+  db.close();
 
 });
 
