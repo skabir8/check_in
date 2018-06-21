@@ -15,11 +15,32 @@ class Event extends Component {
 	}
 
 	handleRemove(event){
-			var deleteId = this.props.eventInfoFromApp.id;
-			var post_req = "/delete?id=" + deleteId;
-			fetch(post_req);
+		var obj = {
+			query:""
+		}
+		var deleteId = this.props.eventInfoFromApp.id;
+		var post_req = "/delete?id=" + deleteId;
+		obj.query = post_req;
+		//this.props.appCallback(obj);
+		fetch(post_req);
 	}
 
+	handleSubmit(event){
+		var obj = {
+			name: this.state.name,
+			invites: this.state.invites,
+			createdEventId: -1,
+			query:""
+		}
+		var new_id = Math.round(Math.random()*100000);
+		obj.createdEventId = new_id;
+		var post_req = "/add?id=" + new_id + "&name=" + obj.name + "&invites=" + obj.invites;
+		obj.query = post_req;
+
+		//this.setState({name: "ddddddd"});
+		//console.log(this.state.name);
+		this.props.appCallback(obj);
+	}
 
 
 		render(){

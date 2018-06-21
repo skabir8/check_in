@@ -19,13 +19,46 @@ class App extends Component {
 
 
   getAddedEvent = (addedEvent) => {
-    let updated_list_of_events = this.state.list_of_events;
-    updated_list_of_events.push(addedEvent);
+    var post_req = addedEvent.query;
+    fetch(post_req);
+    fetch('/users')
+    .then(res => res.json())
+    .then(new_users => {this.setState({ users: new_users.data})
+    if (new_users.data.length > 0) {
+      const newUserList = this.state.users;
+      for (var i = 0; i < new_users.data.length ; i++){
+        let current_event = new_users.data[i];
+        let new_name = current_event.name;
+        let new_id = current_event.id;
+        let new_locations = current_event.locations.substring(1,current_event.locations.length-1).split(',');
+        let new_members = current_event.members.substring(1,current_event.members.length-1).split(',');
+        let new_time = current_event.time.substring(1,current_event.time.length-1).split(',');
+        let new_date = current_event.date.substring(1,current_event.date.length-1).split(',');
+        let new_checkedin = current_event.checkedin.substring(1,current_event.checkedin.length-1).split(',');
+        let new_map_locations = current_event.map_locations.substring(1,current_event.map_locations.length-1).split(',');
+        let new_todo = current_event.todo.substring(1,current_event.todo.length-1).split(',');
+        let new_dict = {
+          id: new_id,
+          name: new_name,
+          locations: new_locations,
+          date: new_date,
+          time: new_time,
+          members: new_members,
+          todo: new_todo,
+          checkedin: new_checkedin,
+          map_locations: new_map_locations};
 
-    this.setState({
-      list_of_events: updated_list_of_events
+          //console.log(new_dict);
+          newUserList[i] = new_dict;
+
+        }
+        this.setState({users: newUserList});
+
+        //console.log(this.state.users);
+      }
     });
   }
+
 
   componentDidMount() {
     var new_list = []
