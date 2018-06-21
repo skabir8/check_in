@@ -20,8 +20,12 @@ class CreateEvent extends Component {
 	handleInvites(event){
 		const Invites = event.target.value;
 		const invites = Invites.split(' ');
+		let new_invites = invites;
+		for (var i = 0; i < invites.length; i++){
+			new_invites[i] = invites[i].trim();
+		}
 		this.setState({
-			invites: invites
+			invites: new_invites
 		})
 	}
 
