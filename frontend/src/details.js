@@ -100,6 +100,7 @@ class Details extends Component {
 	}
 
 	render() {
+		console.log(this.state.id);
 		return(
 			<div className="SetDetails">
 				<div>

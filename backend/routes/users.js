@@ -11,7 +11,7 @@ var sqlite3 = require('sqlite3').verbose();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var db = new sqlite3.Database('data/users.db');
-
+  var username = req.query['username'];
   var query = "SELECT * FROM events";
   var ret_val = "";
   db.all(query, function (err, rows) {

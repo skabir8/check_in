@@ -45,7 +45,7 @@ class Event extends Component {
 
 		render(){
 			//console.log(this.state.fullDetails);
-			console.log(this.state);
+			//console.log(this.state);
 			return (
 				<div id="Event">
 				<div id="Event-Header">

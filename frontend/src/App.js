@@ -61,6 +61,9 @@ class App extends Component {
 
 
   componentDidMount() {
+    var username = (window.location.href).substring(32,(window.location.href).length);
+    var fetch_url = "/users?username=" + username;
+    console.log(fetch_url);
     var new_list = []
     fetch('/users')
     .then(res => res.json())
