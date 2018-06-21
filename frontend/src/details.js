@@ -6,7 +6,7 @@ class Details extends Component {
 		super(props);
 		const myProps = this.props.eventInfoFromApp;
 		this.state = {
-			id: myProps.id,
+			id: this.props.detailsInfoFromEvent,
 			name: myProps.name,
 			invites: myProps.members,
 			date: myProps.date[0],

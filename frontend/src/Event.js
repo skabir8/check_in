@@ -9,7 +9,8 @@ class Event extends Component {
 		this.state = {
 			name: this.props.eventInfoFromApp.name,
 			invites: this.props.eventInfoFromApp.members,
-			fullDetails: this.props.eventInfoFromApp
+			fullDetails: this.props.eventInfoFromApp,
+			createdEventId: this.props.eventInfoFromApp.createdEventId
 		}
 	}
 
@@ -31,7 +32,7 @@ class Event extends Component {
 						{this.state.invites.map((invite) => <li>{invite}</li>)}
 					</ul>
 					<br />
-					<Details eventInfoFromApp={this.state.fullDetails} />
+					<Details eventInfoFromApp={this.state.fullDetails} detailsInfoFromEvent={this.state.createdEventId}/>
 				</div>
 			</div>
 		);

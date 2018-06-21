@@ -106,26 +106,26 @@ class App extends Component {
 
     let createdEvents = myEvents.map((createdEvent, index) => {
       //console.log(createdEvent);
+      createdEvent.createdEventId = index;
       if(createdEvent !== undefined)
-      return <Event key={index} eventInfoFromApp={createdEvent} />
+        return <Event key={index} eventInfoFromApp={createdEvent} />
     });
 
 
 
     return (
       <div className="App">
-      <header className="App-header">
-      <img src="Check_icon.png" id="check-logo" alt="logo" />
-      </header>
+        <header className="App-header">
+          <img src="Check_icon.png" id="check-logo" alt="logo" />
+        </header>
 
-      <div id="create-events">
-      <CreateEvents appCallback={this.getAddedEvent}/>
-      </div>
+        <div id="create-events">
+          <CreateEvents appCallback={this.getAddedEvent}/>
+        </div>
 
-      <div id="current-events">
-      { (doRender) ? createdEvents : null }
-      </div>
-
+        <div id="current-events">
+          { (doRender) ? createdEvents : null }
+        </div>
       </div>
     );
   }

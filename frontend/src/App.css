@@ -1,8 +1,9 @@
 .App {
   text-align: center;
   justify-content: flex-start;
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
+  /*columns: 250px 3;*/
 }
 
 #check-logo {
@@ -12,8 +13,10 @@
 }
 
 #current-events {
-  display: flex;
+  display: grid;
   justify-content: center;
+  grid-template: 750px / auto auto auto;
+  /*columns: 250px 3;*/
 }
 
 .App-header {
@@ -26,15 +29,11 @@
   align-items: flex-end;
 }
 
-.App-title {
+/*.App-title {
   font-size: 1.5em;
-}
+}*/
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}

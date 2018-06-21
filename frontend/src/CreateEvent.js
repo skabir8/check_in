@@ -30,20 +30,11 @@ class CreateEvent extends Component {
 
 		var obj = {
 			name: this.state.name,
-			invites: this.state.invites
+			invites: this.state.invites,
+			createdEventId: -1
 		}
 
 		this.props.appCallback(obj);
-
-		// let updatedEvents = this.state.invites;
-
-		// updatedEvents.push(obj);
-
-		// this.setState({
-		// 	events: updatedEvents
-		// })
-
-		// console.log(obj);
 	}
 
 	render(){
@@ -70,26 +61,6 @@ class CreateEvent extends Component {
 		            </div>
 		          </div>
 		        </div>
-
-		        {/* <br />
-		        <br />
-		        <br />
-
-		        <ul>
-		        	{this.}
-		        </ul>
-
-		        <div id="all-events">
-		          <p> <strong>{this.state.events[this.state.events.length-1].name}</strong> </p>
-		          <p> {this.state.events[this.state.events.length-1].invites} </p>
-
-		          <p> <strong>{this.state.events[this.state.events.length-2].name}</strong> </p> 
-		          <p> {this.state.events[this.state.events.length-2].invites} </p>
-
-		          <p> <strong>{this.state.events[this.state.events.length-3].name}</strong> </p> 
-		          <p> {this.state.events[this.state.events.length-3].invites} </p>
-		        </div>*/}
-		     
 		    </div>
 		);
 	}
