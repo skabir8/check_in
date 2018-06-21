@@ -97,16 +97,20 @@ class App extends Component {
 
   render() {
     const myEvents = this.state.users;
+    let doRender = false;
     if (myEvents.length > 0 && typeof(myEvents[0].locations) != "string") {
-      console.log(myEvents[0]);
+      const myEvents = this.state.users;
+      doRender = true;
+      //console.log(doRender);
     }
 
-    const createdEvents = this.state.list_of_events.map((createdEvent, i) => {
-      console.log(createdEvent);
-      createdEvent.createdEventId = i;
+    let createdEvents = myEvents.map((createdEvent, index) => {
+      //console.log(createdEvent);
       if(createdEvent !== undefined)
-      return <Event key={i} eventInfoFromApp={createdEvent} />
+      return <Event key={index} eventInfoFromApp={createdEvent} />
     });
+
+
 
     return (
       <div className="App">
@@ -119,7 +123,7 @@ class App extends Component {
       </div>
 
       <div id="current-events">
-      {createdEvents}
+      { (doRender) ? createdEvents : null }
       </div>
 
       </div>

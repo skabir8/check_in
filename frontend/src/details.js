@@ -4,17 +4,18 @@ import './details.css';
 class Details extends Component {
 	constructor(props){
 		super(props);
+		const myProps = this.props.eventInfoFromApp;
 		this.state = {
-			id: this.props.detailsInfoFromEvent,
-			name: "Barbeque",
-			invites: ["Jim", "Dwight", "Andy", "Angela"],
-			date: "July 4, 2018",
+			id: myProps.id,
+			name: myProps.name,
+			invites: myProps.members,
+			date: myProps.date[0],
 			temporaryDate: "",
-			time: "13:05",
+			time: myProps.time[0],
 			temporaryTime: "",
-			todo: [ "Rakib - Music", "Shariar - Food"],
+			todo: myProps.todo,
 			temporaryTodo: "",
-			checkedIn: ["Rakib"],
+			checkedIn: myProps.checkedin,
 			temporaryCheckedIn: ""
 		}
 	}
@@ -90,14 +91,14 @@ class Details extends Component {
 				</div>
 				<br />
 				<div>
-					<strong>Responsibilities:</strong> 
+					<strong>Responsibilities:</strong>
 				</div>
 				<ul>
 					{this.state.todo.map((to_do) => <li>{to_do}</li>)}
 				</ul>
 				<br />
 				<div>
-					<strong>Checked-In:</strong> 
+					<strong>Checked-In:</strong>
 				</div>
 				<ul>
 					{this.state.checkedIn.map((i) => <li>{i}</li>)}

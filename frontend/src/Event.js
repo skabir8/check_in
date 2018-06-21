@@ -5,14 +5,17 @@ import Details from './details.js';
 class Event extends Component {
 	constructor(props){
 		super(props);
+		//console.log(this.props.eventInfoFromApp.members[0]);
 		this.state = {
 			name: this.props.eventInfoFromApp.name,
-			invites: this.props.eventInfoFromApp.invites
+			invites: this.props.eventInfoFromApp.members,
+			fullDetails: this.props.eventInfoFromApp
 		}
 	}
 
 
 	render(){
+		//console.log(this.state.fullDetails);
 		return (
 			<div id="Event">
 				<div id="Event-Header">
@@ -28,7 +31,7 @@ class Event extends Component {
 						{this.state.invites.map((invite) => <li>{invite}</li>)}
 					</ul>
 					<br />
-					<Details />
+					<Details eventInfoFromApp={this.state.fullDetails} />
 				</div>
 			</div>
 		);
