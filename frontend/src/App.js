@@ -3,8 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import CreateEvents from "./CreateEvent.js";
 import Event from "./Event.js";
+import { compose, withProps } from "recompose"
+
 
 class App extends Component {
+
+
 
   constructor(){
     super();
@@ -61,6 +65,8 @@ class App extends Component {
 
 
   componentDidMount() {
+
+
     var username = (window.location.href).substring(32,(window.location.href).length);
     var fetch_url = "/users?username=" + username;
     console.log(fetch_url);
@@ -137,6 +143,7 @@ class App extends Component {
 
 
   render() {
+
     const myEvents = this.state.users;
     let doRender = false;
     if (myEvents.length > 0 && typeof(myEvents[0].locations) != "string") {
@@ -161,6 +168,7 @@ class App extends Component {
         </header>
 
         <div id="create-events">
+
           <CreateEvents appCallback={this.getAddedEvent} onClick={this.handleNewUpdate.bind(this)}/>
         </div>
 

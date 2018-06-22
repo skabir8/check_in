@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import './details.css';
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from "react-google-maps";
 
 class Details extends Component {
 	constructor(props){
@@ -89,18 +95,27 @@ class Details extends Component {
 			checkedIn: this.state.temporaryCheckedIn.replace(/\s/g, '').split(','),
 			query: ""
 		}
-		// var new_id = Math.round(Math.random()*100000);
-		// obj.createdEventId = new_id;
 		var post_req_detail = "addDetails?id=" + obj.id + "&date=" + obj.date + "&time=" + obj.time + "&todo=" + obj.todo +"&checkedIn=" + obj.checkedIn;
 		obj.query = post_req_detail;
 		console.log(post_req_detail);
 		fetch(post_req_detail);
-		//this.setState({name: "ddddddd"});
-		//console.log(this.state.name);
+
 	}
 
 	render() {
-		console.log(this.state.id);
+		const MapWithAMarker = withScriptjs(withGoogleMap(props =>
+			<GoogleMap
+				defaultZoom={8}
+				defaultCenter={{ lat: -34.397, lng: 150.644 }}
+			>
+				<Marker
+					position={{ lat: -34.397, lng: 150.644 }}
+				/>
+				<Marker
+					position={{ lat: -37.397, lng: 150.644 }}
+				/>
+			</GoogleMap>
+		));
 		return(
 			<div className="SetDetails">
 				<div id="details-title">
@@ -127,7 +142,16 @@ class Details extends Component {
 				<ul>
 					{this.state.checkedIn.map((i) => <li>{i}</li>)}
 				</ul>
+				<ul>
 
+				</ul>
+				<br /> <br />
+				<MapWithAMarker
+					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
+					loadingElement={<div style={{ height: `100%` }} />}
+					containerElement={<div style={{ height: `400px` }} />}
+					mapElement={<div style={{ height: `100%` }} />}
+				/>
 
 				<br /> <br />
 
