@@ -11,6 +11,7 @@ class Details extends Component {
 	constructor(props){
 		super(props);
 		const myProps = this.props.eventInfoFromApp;
+		//console.log(myProps);
 		this.state = {
 			id: myProps.id,
 			name: myProps.name,
@@ -103,17 +104,19 @@ class Details extends Component {
 	}
 
 	render() {
+		const myLocs = this.state.checkedIn;
+		const myLocsOne = parseFloat(myLocs[1]);
+		const myLocsTwo = parseFloat(myLocs[0]);
+		const myNames = myLocs.slice(2, myLocs.length);
+		var my_obj = {lat: myLocsOne, lng: myLocsTwo}
+		console.log(myLocsOne, myLocsTwo, myNames);
 		const MapWithAMarker = withScriptjs(withGoogleMap(props =>
 			<GoogleMap
 				defaultZoom={8}
-				defaultCenter={{ lat: -34.397, lng: 150.644 }}
+				defaultCenter={{ lat: 40.7685437, lng: -73.96518789999999 }}
 			>
-				<Marker
-					position={{ lat: -34.397, lng: 150.644 }}
-				/>
-				<Marker
-					position={{ lat: -37.397, lng: 150.644 }}
-				/>
+			<Marker position={my_obj} />
+
 			</GoogleMap>
 		));
 		return(
@@ -140,7 +143,7 @@ class Details extends Component {
 					<strong>Checked-In:</strong>
 				</div>
 				<ul>
-					{this.state.checkedIn.map((i) => <li>{i}</li>)}
+					{myNames.map((i) => <li>{i}</li>)}
 				</ul>
 				<ul>
 
