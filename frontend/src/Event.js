@@ -48,21 +48,32 @@ class Event extends Component {
 			//console.log(this.state);
 			return (
 				<div id="Event">
-				<div id="Event-Header">
-								<p id="Event-Name">{this.state.name} </p>
-								<i id="delete" class="fas fa-minus-circle" onClick={this.handleRemove.bind(this)} my_id = {this.state.createdEventId}></i>
-				</div>
+					<div id="Event-Header">
+						<p id="Event-Name">{this.state.name} </p>
+						<i id="delete" class="fas fa-minus-circle" onClick={this.handleRemove.bind(this)} my_id = {this.state.createdEventId}></i>
+					</div>
 
 					<div>
-						<p id="invited">Invited</p>
+						<p id="invited">Friends</p>
 					</div>
 
 					<div id="Event-Body">
-						<ul>
-							{this.state.invites.map((invite) => <li>{invite}</li>)}
-						</ul>
-						<br />
-						<Details eventInfoFromApp={this.state.fullDetails} detailsInfoFromEvent={this.state.createdEventId}/>
+
+						<div id="list-of-people">
+							<ul>
+								{this.state.invites.map((invite) => <li>{invite}</li>)}
+							</ul>
+							<button class="btn btn-secondary" data-toggle="modal" data-target={"#" + this.state.createdEventId +"myModal4"} id="see-details-button">See Details</button>
+							<div id={this.state.createdEventId+"myModal4"} className="modal fade" role="dialog">
+			          <div className="modal-dialog">
+			            <div className="modal-content">
+			              <div className="modal-body">
+			                <Details eventInfoFromApp={this.state.fullDetails} detailsInfoFromEvent={this.state.createdEventId}/>
+			              </div>
+			            </div>
+			          </div>
+		        	</div>
+						</div>
 					</div>
 				</div>
 			);

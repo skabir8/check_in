@@ -103,9 +103,13 @@ class Details extends Component {
 		console.log(this.state.id);
 		return(
 			<div className="SetDetails">
+				<div id="details-title">
+					<h2>Details</h2>
+				</div>
 				<div>
 					<strong>Date:</strong> {this.state.date}
 				</div>
+				<br />
 				<div>
 					<strong>Time:</strong>  {this.state.time}
 				</div>
@@ -127,25 +131,25 @@ class Details extends Component {
 
 				<br /> <br />
 
-				<button class="btn btn-outline-primary" data-toggle="modal" data-target={"#" + this.state.id +"myModal3"} id="details">Set Details</button>
-        <div id={this.state.id+"myModal3"} className="modal fade" role="dialog">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-body">
-                <form>
-                  <label>
-                    Date: <input onChange={this.handleDate.bind(this)} type="text" /> <br />
-                    Time: <input onChange={this.handleTime.bind(this)} type="text" /> <br />
-                    Todo: <input onChange={this.handleTodo.bind(this)} type="text" /> <br />
-                    Checked In: <input onChange={this.handleCheckedIn.bind(this)} type="text" /> <br />
-                  </label>
-                    <br/>
-                    <input type="submit" value="Submit" onClick={this.handleSubmit.bind(this)} data-dismiss="modal"/>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+				<button class="btn btn-info" data-toggle="modal" data-target={"#" + this.state.id +"myModal3"} id="details">Edit</button>
+		        <div id={this.state.id+"myModal3"} className="modal fade" role="dialog">
+		          <div className="modal-dialog">
+		            <div className="modal-content">
+		              <div className="modal-body">
+		                <form>
+		                  <label>
+		                    Date: <input onChange={this.handleDate.bind(this)} type="text" /> <br />
+		                    Time: <input onChange={this.handleTime.bind(this)} type="text" /> <br />
+		                    Todo: <input onChange={this.handleTodo.bind(this)} type="text" /> <br />
+		                    Checked In: <input onChange={this.handleCheckedIn.bind(this)} type="text" /> <br />
+		                  </label>
+		                    <br/>
+		                    <input type="submit" value="Submit" onClick={this.handleSubmit.bind(this)} data-dismiss="modal"/>
+		                </form>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
 			</div>
 		);
 	}

@@ -4,4 +4,11 @@
    font-size: 30px;
    font-family: 'Open Sans', sans-serif;
    margin-bottom: 30px;
+   background: #00b4db;
+   color: white;
+}
+
+#createEventButton:hover {
+	background: white;
+    color: #00b4db;
 }

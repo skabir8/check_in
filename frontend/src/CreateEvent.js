@@ -30,6 +30,7 @@ class CreateEvent extends Component {
 	}
 
 	handleSubmit(event){
+		event.preventDefault();
 		var obj = {
 			name: this.state.name,
 			invites: this.state.invites,
